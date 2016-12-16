@@ -1,4 +1,5 @@
 #include <windows.h> 
+#include "stdafx.h"
 LRESULT CALLBACK WinFun(HWND, UINT, WPARAM, LPARAM);
 char WinName[] = "Window";
 int WINAPI WinMain(HINSTANCE hIns, HINSTANCE hPrevIns, LPSTR arg, int WinMode)
@@ -46,8 +47,8 @@ struct line
 };
 struct lineList
 {
-	rect L;
-	rectList *pNext;
+	line L;
+	lineList *pNext;
 };
 lineList *pFirst = 0, *p;
 void add(lineList *&pF, lineList *p)
@@ -91,8 +92,8 @@ LRESULT CALLBACK WinFun(HWND hwnd, UINT message,
 			SelectObject(hdc, pW);
 			SelectObject(hdc, pB);
 			MoveToEx(hdc, p->L.x1, p->L.y1, (LPPOINT)NULL);
-			Rectangle(hdc, p->L.x1, p->L.y1, p->L.x2, p->L.y2);
-			p = p->pNext;
+			Rectangle(hdc, p->L.x1, p -> L.y1, p->L.x2, p->L.y2);
+			p = p-> pNext;
 		}
 		EndPaint(hwnd, &ps);
 		break;
