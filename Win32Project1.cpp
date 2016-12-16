@@ -1,5 +1,6 @@
 #include <windows.h> 
 #include "stdafx.h"
+#include <tchar.h>
 LRESULT CALLBACK WinFun(HWND, UINT, WPARAM, LPARAM);
 char WinName[] = "Window";
 int WINAPI WinMain(HINSTANCE hIns, HINSTANCE hPrevIns, LPSTR arg, int WinMode)
@@ -8,7 +9,7 @@ int WINAPI WinMain(HINSTANCE hIns, HINSTANCE hPrevIns, LPSTR arg, int WinMode)
 	MSG msg;
 	WNDCLASSEX wcl;
 	wcl.hInstance = hIns;
-	wcl.lpszClassName = WinName;
+	wcl.lpszClassName = _T("WinName");
 	wcl.lpfnWndProc = WinFun;
 	wcl.style = 0;
 	wcl.cbSize = sizeof(WNDCLASSEX);
@@ -20,9 +21,9 @@ int WINAPI WinMain(HINSTANCE hIns, HINSTANCE hPrevIns, LPSTR arg, int WinMode)
 	wcl.cbWndExtra = 0;
 	wcl.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	if (!RegisterClassEx(&wcl)) return 0;
-	hwnd = CreateWindow(
+	hwnd = CreateWindowA(
 		WinName,
-		"Lab8",
+		"LW8",
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
